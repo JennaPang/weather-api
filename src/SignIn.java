@@ -54,14 +54,17 @@ public class SignIn extends JFrame {
         		String p = new String(pswdIn.getPassword());
         		String cp = new String(checkPswd.getPassword());
                 String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
-                try{             
-                    BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
-                    fw.write(i+"/"+cp+"/");
-                    fw.flush();
-                    fw.close();
-                }catch(Exception ex){
-                    ex.printStackTrace();
+                if(p.equals(cp)) {
+	                try{             
+	                    BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
+	                    fw.write(i+"/"+cp+"/");
+	                    fw.flush();
+	                    fw.close();
+	                }catch(Exception ex){
+	                    ex.printStackTrace();
+	                }
                 }
+                else JOptionPane.showMessageDialog(rootPane, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
             }
         });
 		sign.setBackground(Color.WHITE);

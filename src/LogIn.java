@@ -2,6 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.awt.event.ActionEvent;
 
 public class LogIn extends JFrame {
@@ -51,6 +55,13 @@ public class LogIn extends JFrame {
 		newUser.setBackground(Color.WHITE);
 		newUser.setFont(new Font("굴림", Font.PLAIN, 9));
 		newUser.setBounds(212, 209, 77, 19);
+		newUser.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+        		setVisible(false);
+        		SignIn signin = new SignIn();
+            }
+        });
 		getContentPane().add(newUser);
 		
 		JLabel label = new JLabel("회원이 아니세요?");
@@ -64,9 +75,5 @@ public class LogIn extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		LogIn LogInPage = new LogIn();		
 	}
 }

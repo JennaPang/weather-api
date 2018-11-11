@@ -47,6 +47,8 @@ public class SignIn extends JFrame {
 		
 		JButton sign = new JButton("가입!");
 		sign.setFont(new Font("굴림", Font.BOLD, 16));
+		sign.setBackground(Color.WHITE);
+		sign.setBounds(130, 185, 143, 35);
 		sign.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -60,6 +62,8 @@ public class SignIn extends JFrame {
 	                    fw.write(i+"/"+cp+"/");
 	                    fw.flush();
 	                    fw.close();
+	                    setVisible(false);
+	                    Log settings = new Log();
 	                }catch(Exception ex){
 	                    ex.printStackTrace();
 	                }
@@ -67,8 +71,6 @@ public class SignIn extends JFrame {
                 else JOptionPane.showMessageDialog(rootPane, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
             }
         });
-		sign.setBackground(Color.WHITE);
-		sign.setBounds(130, 185, 143, 35);
 		getContentPane().add(sign);
 				
 		setTitle("회원가입");
@@ -77,9 +79,5 @@ public class SignIn extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-	}
-	
-	public static void main(String[] args) {
-		new SignIn();
 	}
 }

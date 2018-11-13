@@ -56,19 +56,34 @@ public class SignIn extends JFrame {
         		String p = new String(pswdIn.getPassword());
         		String cp = new String(checkPswd.getPassword());
                 String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
-                if(p.equals(cp)) {
-	                try{             
-	                    BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
-	                    fw.write(i+"/"+cp+"/");
+               try {
+	                BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
+	                if (!findWord(fileName,"id:"+i)&&p.equals(cp)&&!i.equals("")&&!p.equals("")&&!cp.equals("")) {
+	                    fw.write("id:"+i+"\npassword:"+cp+"\n");
 	                    fw.flush();
 	                    fw.close();
 	                    setVisible(false);
 	                    Log settings = new Log();
-	                }catch(Exception ex){
-	                    ex.printStackTrace();
 	                }
-                }
-                else JOptionPane.showMessageDialog(rootPane, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+	                else{
+		               	if(findWord(fileName,"id:"+i)) {
+		                	JOptionPane.showMessageDialog(rootPane, "이미 존재하는 아이디 입니다.");
+		                	idIn.setText("");
+		               	}
+		                if(!p.equals(cp)) {
+		                	JOptionPane.showMessageDialog(rootPane, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+		                	pswdIn.setText("");
+		                	checkPswd.setText("");
+		                }
+		                if(i.equals("")||p.equals("")||cp.equals("")) {
+		                	JOptionPane.showMessageDialog(rootPane, "모든 칸을 채워주세요.");		                	
+		                }
+	               	}
+	                 
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+               
             }
         });
 		getContentPane().add(sign);
@@ -78,6 +93,20 @@ public class SignIn extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
+	}
+	
+	public boolean findWord(String file, String word) {
+		String s;
+		try {
+			BufferedReader fr = new BufferedReader(new FileReader(file));
+			while((s=fr.readLine())!=null) {
+				if(s.equals(word)) {
+					return true;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		return false;
 	}
 }

@@ -4,13 +4,16 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class LogIn extends JFrame {
 	private JTextField idIn;
-	private JTextField pswdIn;
+	private JPasswordField pswdIn;
 
 	public LogIn() {
 		getContentPane().setBackground(new Color(224, 255, 255));
@@ -43,10 +46,20 @@ public class LogIn extends JFrame {
 		
 		JButton log = new JButton("로그인");
 		log.setFont(new Font("굴림", Font.BOLD, 16));
-		log.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		log.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+        		String i = idIn.getText();
+        		String p = new String(pswdIn.getPassword());
+        		String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
+        		if(findWord(fileName,"id:"+i)&&findWord(fileName,"password:"+p)) {
+        			JOptionPane.showMessageDialog(rootPane, "로그인!");
+        		}
+        		else {
+        			JOptionPane.showMessageDialog(rootPane, "아이디와 비밀번호를 다시 확인하세요.");
+        		}
+            }
+        });
 		log.setBackground(Color.WHITE);
 		log.setBounds(121, 162, 143, 35);
 		getContentPane().add(log);
@@ -75,5 +88,20 @@ public class LogIn extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+	
+	public boolean findWord(String file, String word) {
+		String s;
+		try {
+			BufferedReader fr = new BufferedReader(new FileReader(file));
+			while((s=fr.readLine())!=null) {
+				if(s.equals(word)) {
+					return true;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		return false;
 	}
 }

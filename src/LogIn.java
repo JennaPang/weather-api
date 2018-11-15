@@ -53,10 +53,10 @@ public class LogIn extends JFrame {
         		String p = new String(pswdIn.getPassword());
         		String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
         		if(findWord(fileName,"id:"+i)&&findWord(fileName,"password:"+p)) {
-        			JOptionPane.showMessageDialog(rootPane, "로그인!");
+        			JOptionPane.showMessageDialog(null, "로그인!");
         		}
         		else {
-        			JOptionPane.showMessageDialog(rootPane, "아이디와 비밀번호를 다시 확인하세요.");
+        			JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 다시 확인하세요.");
         		}
             }
         });

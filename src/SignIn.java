@@ -67,16 +67,16 @@ public class SignIn extends JFrame {
 	                }
 	                else{
 		               	if(findWord(fileName,"id:"+i)) {
-		                	JOptionPane.showMessageDialog(rootPane, "이미 존재하는 아이디 입니다.");
+		                	JOptionPane.showMessageDialog(null, "이미 존재하는 아이디 입니다.");
 		                	idIn.setText("");
 		               	}
 		                if(!p.equals(cp)) {
-		                	JOptionPane.showMessageDialog(rootPane, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+		                	JOptionPane.showMessageDialog(null, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 		                	pswdIn.setText("");
 		                	checkPswd.setText("");
 		                }
 		                if(i.equals("")||p.equals("")||cp.equals("")) {
-		                	JOptionPane.showMessageDialog(rootPane, "모든 칸을 채워주세요.");		                	
+		                	JOptionPane.showMessageDialog(null, "모든 칸을 채워주세요.");		                	
 		                }
 	               	}
 	                 

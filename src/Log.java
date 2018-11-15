@@ -1,9 +1,14 @@
 import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
 import javax.swing.*;
 
 public class Log extends JFrame {
-	
+
+	String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
 	public Log(){
+		
 		getContentPane().setBackground(new Color(224, 255, 255));
 		getContentPane().setLayout(null);
 		
@@ -57,18 +62,64 @@ public class Log extends JFrame {
 		list4.setBounds(245, 228, 186, 23);
 		getContentPane().add(list4);
 		
-		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.setBounds(375, 273, 99, 30);
-		getContentPane().add(btnNewButton);
+		JButton submit = new JButton("Submit");
+		submit.setBounds(375, 273, 99, 30);
+		submit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	int one = list1.getSelectedIndex();
+            	int two = list2.getSelectedIndex();
+            	int three = list3.getSelectedIndex();
+            	int four = list4.getSelectedIndex();
+        		try {
+        			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
+        			
+        			
+        		} catch(IOException e1) {
+        			e1.printStackTrace();
+        		}
+            }
+        });
+		submit.setBackground(Color.WHITE);
+		getContentPane().add(submit);
 				
 		setTitle("초기 세팅");
 		setSize(496,351);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			  @Override
+			  public void windowClosing(WindowEvent we)
+			  { 
+			    String ObjButtons[] = {"Yes","No"};
+			    int PromptResult = JOptionPane.showOptionDialog(null, 
+			        "지금 창을 종료하면 모든 결과를 잃게 됩니다. 종료하시겠습니까?", "종료", 
+			        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, 
+			        ObjButtons,ObjButtons[1]);
+			    if(PromptResult==0)
+			    {
+			    	try {
+						RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "rw");
+						byte b;
+				    	long length;
+						length = randomAccessFile.length()-1;
+				    	if (length >= 3) {
+				    	    do {
+				    	        length -= 3;
+				    	        randomAccessFile.seek(length);
+				    	        b = randomAccessFile.readByte();
+				    	    } while (b != 10 && length > 0);
+				    	    randomAccessFile.setLength((length==0)?length:length+1);
+				    	}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+			    	
+			    	
+			    	System.exit(0);          
+			    }
+			  }
+			});
 		setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		Log initFrame = new Log();
 	}
 }

@@ -71,13 +71,22 @@ public class Log extends JFrame {
             	int two = list2.getSelectedIndex();
             	int three = list3.getSelectedIndex();
             	int four = list4.getSelectedIndex();
-        		try {
-        			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
-        			
-        			
-        		} catch(IOException e1) {
-        			e1.printStackTrace();
-        		}
+            	if(one==0||two==0||three==0||four==0) {
+            		JOptionPane.showMessageDialog(null, "모든 칸을 선택 해 주세요.");
+            	}
+            	else {
+	        		try {
+	        			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
+	        			fw.write(one+" "+two+" "+three+" "+four+"\n");
+	                    fw.flush();
+	                    fw.close();
+	        			setVisible(false);
+	        			JOptionPane.showMessageDialog(null, "환영합니다!");
+	        			LogIn login = new LogIn();
+	        		} catch(IOException e1) {
+	        			e1.printStackTrace();
+	        		}
+            	}
             }
         });
 		submit.setBackground(Color.WHITE);

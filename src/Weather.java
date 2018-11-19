@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
 
 public class Weather {
 
@@ -36,6 +38,9 @@ public class Weather {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel lblWeather = new JLabel("Weather");
+		frame.getContentPane().add(lblWeather, BorderLayout.CENTER);
 	}
 
 }

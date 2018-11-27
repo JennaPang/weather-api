@@ -81,8 +81,6 @@ public class LogIn extends JFrame {
 		label.setBounds(94, 210, 108, 15);
 		getContentPane().add(label);
 		
-		
-		
 		setTitle("로그인");
 		setSize(388,304);
 		setResizable(false);

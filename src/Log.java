@@ -31,7 +31,7 @@ public class Log extends JFrame {
 		getContentPane().add(no1);
 		
 		JComboBox list1 = new JComboBox();
-		list1.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "강수확률", "미세먼지", "일출/일몰 시간"}));
+		list1.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "습도", "최고/최저 기온", "일출/일몰 시간", "풍속"}));
 		list1.setBounds(245, 78, 186, 23);
 		getContentPane().add(list1);
 
@@ -40,7 +40,7 @@ public class Log extends JFrame {
 		getContentPane().add(no2);
 		
 		JComboBox list2 = new JComboBox();
-		list2.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "강수확률", "미세먼지", "일출/일몰 시간"}));
+		list2.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "습도", "최고/최저 기온", "일출/일몰 시간", "풍속"}));
 		list2.setBounds(245, 128, 186, 23);
 		getContentPane().add(list2);
 		
@@ -49,7 +49,7 @@ public class Log extends JFrame {
 		getContentPane().add(no3);
 		
 		JComboBox list3 = new JComboBox();
-		list3.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "강수확률", "미세먼지", "일출/일몰 시간"}));
+		list3.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "습도", "최고/최저 기온", "일출/일몰 시간", "풍속"}));
 		list3.setBounds(245, 178, 186, 23);
 		getContentPane().add(list3);
 		
@@ -58,7 +58,7 @@ public class Log extends JFrame {
 		getContentPane().add(no4);
 		
 		JComboBox list4 = new JComboBox();
-		list4.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "강수확률", "미세먼지", "일출/일몰 시간"}));
+		list4.setModel(new DefaultComboBoxModel(new String[] {" ","기온", "습도", "최고/최저 기온", "일출/일몰 시간", "풍속"}));
 		list4.setBounds(245, 228, 186, 23);
 		getContentPane().add(list4);
 		

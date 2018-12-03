@@ -63,7 +63,7 @@ public class SignIn extends JFrame {
 	                    fw.flush();
 	                    fw.close();
 	                    setVisible(false);
-	                    Log settings = new Log();
+	                    Weather w = new Weather();
 	                }
 	                else{
 		               	if(findWord(fileName,"id:"+i)) {

@@ -53,6 +53,7 @@ public class LogIn extends JFrame {
         		String p = new String(pswdIn.getPassword());
         		String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
         		if(findWord(fileName,"id:"+i)&&findWord(fileName,"password:"+p)) {
+        			setVisible(false);
         			Weather w = new Weather();
         		}
         		else {

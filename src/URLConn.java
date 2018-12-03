@@ -34,7 +34,7 @@ public class URLConn{
                 if(buf == null) break;
                 System.out.println(buf);
                 int a2 = buf.indexOf("temp");
-                double temp=Double.parseDouble(buf.substring(a2+6, a2+12))-273.15;
+                double temp=Double.parseDouble(buf.substring(a2+6, a2+11))-273.15;
                 System.out.println("서울의 현재 온도(섭씨):"+temp);
             }
         }catch(MalformedURLException mue){

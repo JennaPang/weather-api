@@ -6,12 +6,8 @@ public class Weather extends JFrame{
 
 	private JFrame frame;
 
-	public static void main(String[] args) {
-		Weather window = new Weather();
-	}
-
 	public Weather() {
-		setBounds(100, 100, 350, 416);
+		setSize(350, 416);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("오늘의 날씨");
 		getContentPane().setLayout(null);

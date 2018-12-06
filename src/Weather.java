@@ -86,5 +86,11 @@ public class Weather extends JFrame{
 		lb401.setFont(new Font("함초롬돋움", Font.BOLD, 25));
 		p4.add(lb401, BorderLayout.CENTER);
 		setVisible(true);
+		
+		URLConn infoClass = new URLConn();
+		lb101.setText(Double.toString(infoClass.getTemp()));
+		lb201.setText(Double.toString(infoClass.getWind()));
+		lb301.setText(Double.toString(infoClass.getHum()));
+		lb401.setText(Double.toString(infoClass.getSunset()));
 	}
 }

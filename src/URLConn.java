@@ -8,10 +8,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class URLConn{
-    public static void main(String args[]){
-
-
-        URL url;//URL 주소 객체
+	private double temperature;
+	private double humidity;
+	private double minTemp;
+	private double maxTemp;
+	private double sunrise;
+	private double sunset;
+	private double wind;
+	private int err=0;
+	
+	public URLConn() {
+		URL url;//URL 주소 객체
         URLConnection connection;//URL접속을 가지는 객체
 
         InputStream is;//URL접속에서 내용을 읽기위한 Stream
@@ -32,19 +39,83 @@ public class URLConn{
             while(true){
                 buf = br.readLine();
                 if(buf == null) break;
-                System.out.println(buf);
-                int a2 = buf.indexOf("temp");
-                double temp=Double.parseDouble(buf.substring(a2+6, a2+11))-273.15;
-                System.out.println("서울의 현재 온도(섭씨):"+temp);
+                setTemp(buf);
+                setHumidity(buf);
+                setMinTemp(buf);
+                setMaxTemp(buf);
+                setSunrise(buf);
+                setSunset(buf);
+                setWind(buf);
             }
         }catch(MalformedURLException mue){
-            System.err.println("잘못된 URL입니다.");
+            err=1;
             System.exit(1);
         }catch(IOException ioe){
-            System.err.println("IOException " + ioe);
-            ioe.printStackTrace();
+            err=1;
             System.exit(1);
         }
-    }
+	}
+	
+	public void setTemp(String buf) {
+		int temp = buf.indexOf("temp");
+		temperature=Double.parseDouble(buf.substring(temp+6, temp+11))-273.15;
+	}
+	
+	public double getTemp() {
+		return temperature;
+	}
+	public void setHumidity(String buf) {
+		int temp = buf.indexOf("humidity");
+		humidity = Double.parseDouble(buf.substring(temp+10, temp+11));
+	}
+	
+	public double getHum() {
+		return humidity;
+	}
+	
+	public void setMinTemp(String buf) {
+		int temp = buf.indexOf("temp_min");
+		minTemp = Double.parseDouble(buf.substring(temp+10, temp+11)) - 273.15;
+	}
+	
+	public double getMinTemp() {
+		return minTemp;
+	}
+	
+	public void setMaxTemp(String buf) {
+		int temp = buf.indexOf("temp_max");
+		maxTemp = Double.parseDouble(buf.substring(temp+10, temp+11)) - 273.15;
+	}
+	
+	public double getMaxTemp() {
+		return maxTemp;
+	}
+	
+	public void setSunrise(String buf) {
+		int temp = buf.indexOf("sunrise");
+		sunrise = Double.parseDouble(buf.substring(temp+9, temp+18));
+	}
+	
+	public double getSunrise() {
+		return sunrise;
+	}
+	
+	public void setSunset(String buf) {
+		int temp = buf.indexOf("sunset");
+		sunset = Double.parseDouble(buf.substring(temp+9, temp+18));
+	}
+	
+	public double getSunset() {
+		return sunset;
+	}
+	
+	public void setWind(String buf) {
+		int temp = buf.indexOf("speed");
+		wind = Double.parseDouble(buf.substring(temp+7, temp+9));
+	}
+	
+	public double getWind() {
+		return wind;
+	}	
 }
  

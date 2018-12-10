@@ -9,6 +9,8 @@ public class SignIn extends JFrame {
 	public SignIn() {
 		getContentPane().setBackground(new Color(224, 255, 255));
 		getContentPane().setLayout(null);
+
+		setResizable(false);
 		
 		JLabel title = new JLabel("회원가입");
 		title.setFont(new Font("HY그래픽M", Font.BOLD, 30));
@@ -63,7 +65,7 @@ public class SignIn extends JFrame {
 	                    fw.flush();
 	                    fw.close();
 	                    setVisible(false);
-	                    Weather w = new Weather();
+	                   	Log l = new Log();
 	                }
 	                else{
 		               	if(findWord(fileName,"id:"+i)) {

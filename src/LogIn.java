@@ -14,11 +14,13 @@ import java.awt.event.ActionEvent;
 public class LogIn extends JFrame {
 	private JTextField idIn;
 	private JPasswordField pswdIn;
-
+	String i, p;
+	
 	public LogIn() {
 		getContentPane().setBackground(new Color(224, 255, 255));
 		getContentPane().setLayout(null);
-		
+
+		setResizable(false);
 		JLabel title = new JLabel("로그인");
 		title.setFont(new Font("HY그래픽M", Font.BOLD, 30));
 		title.setBounds(145, 30, 95, 35);
@@ -49,15 +51,26 @@ public class LogIn extends JFrame {
 		log.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-        		String i = idIn.getText();
-        		String p = new String(pswdIn.getPassword());
-        		String fileName = "C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt" ; 
-        		if(findWord(fileName,"id:"+i)&&findWord(fileName,"password:"+p)) {
-        			setVisible(false);
-        			Weather w = new Weather();
-        		}
-        		else {
-        			JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 다시 확인하세요.");
+        		i = idIn.getText();
+        		p = new String(pswdIn.getPassword());
+        		BufferedReader reader;
+        		try {
+        			reader = new BufferedReader(new FileReader("C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt"));
+        			String line = "";
+        			while ((line=reader.readLine()) != null) {
+        				if(line.equals("id:"+i)) {
+        					if(reader.readLine().equals("password:"+p)) {
+        	        			setVisible(false);
+        	        			new Weather(i,p);
+        					}
+        					else {
+        						JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 다시 확인하세요.");
+        					}
+        				}
+        			}
+        			reader.close();
+        		} catch (IOException e1) {
+        			e1.printStackTrace();
         		}
             }
         });
@@ -73,7 +86,7 @@ public class LogIn extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
         		setVisible(false);
-        		SignIn signin = new SignIn();
+        		new SignIn();
             }
         });
 		getContentPane().add(newUser);

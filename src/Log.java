@@ -11,6 +11,8 @@ public class Log extends JFrame {
 		
 		getContentPane().setBackground(new Color(224, 255, 255));
 		getContentPane().setLayout(null);
+
+		setResizable(false);
 		
 		JLabel img = new JLabel(new ImageIcon("C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\proj.png"));
 		img.setBounds(10, 10, 225, 300);

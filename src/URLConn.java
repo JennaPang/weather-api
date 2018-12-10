@@ -75,7 +75,7 @@ public class URLConn{
 	
 	public void setMinTemp(String buf) {
 		int temp = buf.indexOf("temp_min");
-		minTemp = Double.parseDouble(buf.substring(temp+10, temp+11)) - 273.15;
+		minTemp = Double.parseDouble(buf.substring(temp+10, temp+15)) - 273.15;
 	}
 	
 	public double getMinTemp() {
@@ -84,7 +84,7 @@ public class URLConn{
 	
 	public void setMaxTemp(String buf) {
 		int temp = buf.indexOf("temp_max");
-		maxTemp = Double.parseDouble(buf.substring(temp+10, temp+11)) - 273.15;
+		maxTemp = Double.parseDouble(buf.substring(temp+10, temp+15)) - 273.15;
 	}
 	
 	public double getMaxTemp() {
@@ -111,7 +111,7 @@ public class URLConn{
 	
 	public void setWind(String buf) {
 		int temp = buf.indexOf("speed");
-		wind = Double.parseDouble(buf.substring(temp+7, temp+9));
+		wind = Double.parseDouble(buf.substring(temp+7, temp+10));
 	}
 	
 	public double getWind() {

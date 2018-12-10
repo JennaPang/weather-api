@@ -1,16 +1,22 @@
 import java.awt.*;
-import java.awt.event.*;
+import java.io.*;
+
 import javax.swing.*;
 
 public class Weather extends JFrame{
 
-	private JFrame frame;
-
-	public Weather() {
+	String i,p;
+	
+	
+	public Weather(String id, String pswd) {
+		i=id;
+		p=pswd;
+		
 		setSize(350, 416);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("오늘의 날씨");
 		getContentPane().setLayout(null);
+		setResizable(false);
 		
 		JPanel p1 = new JPanel();
 		p1.setBounds(0, 0, 338, 154);
@@ -87,10 +93,59 @@ public class Weather extends JFrame{
 		p4.add(lb401, BorderLayout.CENTER);
 		setVisible(true);
 		
+		BufferedReader reader;
+		String key = "asdf";
+		String arr[] = new String[4];
+		try {
+			reader = new BufferedReader(new FileReader("C:\\Users\\wndud\\eclipse-workspace\\IndividualProject\\res\\accounts.txt"));
+			String line = "";
+			while ((line=reader.readLine()) != null) {
+				if(line.equals("id:"+i)) {
+					if(reader.readLine().equals("password:"+p)) {
+						key = reader.readLine();
+						arr = key.split(" ");
+						break;
+					}
+				}
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		JLabel[] lbarr = {lb1, lb101, lb2, lb201, lb3, lb301, lb4, lb401};
 		URLConn infoClass = new URLConn();
-		lb101.setText(Double.toString(infoClass.getTemp()));
-		lb201.setText(Double.toString(infoClass.getWind()));
-		lb301.setText(Double.toString(infoClass.getHum()));
-		lb401.setText(Double.toString(infoClass.getSunset()));
+		for(int i=0;i<4;i++) {
+			switch(arr[i]) {
+				case "1":
+					lbarr[i*2].setText("기온");
+					lbarr[i*2+1].setText(Double.toString(infoClass.getTemp()));
+					break;
+				case "2":
+					lbarr[i*2].setText("습도");
+					lbarr[i*2+1].setText(Double.toString(infoClass.getHum()));
+					break;
+				case "3":
+					lbarr[i*2].setText("최저/최고 기온");
+					lbarr[i*2+1].setText(Double.toString(infoClass.getMinTemp())+"/"+Double.toString(infoClass.getMaxTemp()));
+					break;
+				case "4":
+					lbarr[i*2].setText("일출/일몰 시간");
+					lbarr[i*2+1].setText(Double.toString(infoClass.getSunrise())+"/"+Double.toString(infoClass.getSunset()));
+					break;
+				case "5":
+					lbarr[i*2].setText("풍속");
+					lbarr[i*2+1].setText(Double.toString(infoClass.getWind()));
+					break;
+				default:
+					break;
+			}
+		}
+		/*lb101.setText(arr[0]);
+		lb201.setText(arr[1]);
+		lb301.setText(arr[2]);
+		lb401.setText(arr[3]);*/
 	}
+	
+	
 }

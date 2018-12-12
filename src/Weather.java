@@ -127,10 +127,12 @@ public class Weather extends JFrame{
 					break;
 				case "3":
 					lbarr[i*2].setText("최저/최고 기온 (°C)");
+					lbarr[1*2+1].setFont(new Font("함초롬돋움", Font.BOLD, 25));
 					lbarr[i*2+1].setText(String.format("%.2f", infoClass.getMinTemp())+"/"+String.format("%.2f", infoClass.getMaxTemp()));
 					break;
 				case "4":
 					lbarr[i*2].setText("일출/일몰 시간");
+					lbarr[1*2+1].setFont(new Font("함초롬돋움", Font.BOLD, 25));
 					lbarr[i*2+1].setText(infoClass.getSunrise()+"/"+infoClass.getSunset());
 					break;
 				case "5":

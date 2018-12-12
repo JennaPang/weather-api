@@ -1,21 +1,24 @@
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.MalformedURLException;
+import java.net.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.io.*;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.IOException;
 
 public class URLConn{
 	private double temperature;
 	private double humidity;
 	private double minTemp;
 	private double maxTemp;
-	private double sunrise;
-	private double sunset;
+	private String sunrise;
+	private String sunset;
 	private double wind;
 	private int err=0;
+
+	public static void main(String[] args) {
+		URLConn u = new URLConn();
+		System.out.println(u.getSunrise());
+	}
+	
 	
 	public URLConn() {
 		URL url;//URL 주소 객체
@@ -93,19 +96,27 @@ public class URLConn{
 	
 	public void setSunrise(String buf) {
 		int temp = buf.indexOf("sunrise");
-		sunrise = Double.parseDouble(buf.substring(temp+9, temp+18));
+		long sun = Long.parseLong(buf.substring(temp+9, temp+18));
+		Date date = new java.util.Date(sun*1000L);
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm"); 
+		sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9")); 
+		sunrise = sdf.format(date);
 	}
 	
-	public double getSunrise() {
+	public String getSunrise() {
 		return sunrise;
 	}
 	
 	public void setSunset(String buf) {
 		int temp = buf.indexOf("sunset");
-		sunset = Double.parseDouble(buf.substring(temp+9, temp+18));
+		long sun = Long.parseLong(buf.substring(temp+9, temp+18));
+		Date date = new java.util.Date(sun*1000L);
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm"); 
+		sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9")); 
+		sunset = sdf.format(date);
 	}
 	
-	public double getSunset() {
+	public String getSunset() {
 		return sunset;
 	}
 	

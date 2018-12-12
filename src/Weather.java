@@ -118,33 +118,29 @@ public class Weather extends JFrame{
 		for(int i=0;i<4;i++) {
 			switch(arr[i]) {
 				case "1":
-					lbarr[i*2].setText("기온");
-					lbarr[i*2+1].setText(Double.toString(infoClass.getTemp()));
+					lbarr[i*2].setText("기온 (°C)");
+					lbarr[i*2+1].setText(String.format("%.2f", infoClass.getTemp()));
 					break;
 				case "2":
-					lbarr[i*2].setText("습도");
+					lbarr[i*2].setText("습도 (%)");
 					lbarr[i*2+1].setText(Double.toString(infoClass.getHum()));
 					break;
 				case "3":
-					lbarr[i*2].setText("최저/최고 기온");
-					lbarr[i*2+1].setText(Double.toString(infoClass.getMinTemp())+"/"+Double.toString(infoClass.getMaxTemp()));
+					lbarr[i*2].setText("최저/최고 기온 (°C)");
+					lbarr[i*2+1].setText(String.format("%.2f", infoClass.getMinTemp())+"/"+String.format("%.2f", infoClass.getMaxTemp()));
 					break;
 				case "4":
 					lbarr[i*2].setText("일출/일몰 시간");
-					lbarr[i*2+1].setText(Double.toString(infoClass.getSunrise())+"/"+Double.toString(infoClass.getSunset()));
+					lbarr[i*2+1].setText(infoClass.getSunrise()+"/"+infoClass.getSunset());
 					break;
 				case "5":
-					lbarr[i*2].setText("풍속");
+					lbarr[i*2].setText("풍속 (meter/sec)");
 					lbarr[i*2+1].setText(Double.toString(infoClass.getWind()));
 					break;
 				default:
 					break;
 			}
 		}
-		/*lb101.setText(arr[0]);
-		lb201.setText(arr[1]);
-		lb301.setText(arr[2]);
-		lb401.setText(arr[3]);*/
 	}
 	
 	

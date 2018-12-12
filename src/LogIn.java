@@ -101,19 +101,4 @@ public class LogIn extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-	
-	public boolean findWord(String file, String word) {
-		String s;
-		try {
-			BufferedReader fr = new BufferedReader(new FileReader(file));
-			while((s=fr.readLine())!=null) {
-				if(s.equals(word)) {
-					return true;
-				}
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		return false;
-	}
 }
